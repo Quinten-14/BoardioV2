@@ -1,0 +1,106 @@
+body {
+	overflow-x: hidden;
+  }
+
+  .listHeader {
+	padding: 0 5% 0 5%;
+  }
+
+  :root {
+	--item-width: 274px;
+	--padding-left: 100px;
+	--padding-right: 0%;
+  }
+
+  .itemList {
+	--index: 0;
+	height: calc(var(--item-width) / 2);
+	margin-top: 20px;
+	padding-left: var(--padding-left);
+	padding-right: var(--padding-right);
+	&:hover {
+		svg {
+		  opacity: 1;
+		}
+	}
+	.item-container {
+	  display: flex;
+	  gap: 10px;
+	  transform: translateX(calc(var(--index) * -1710px)); // this needs to be changed to slide the list around
+	  transition: all 0.5s ease-in-out;
+	}
+
+	button {
+	  background-color: transparent;
+	  border: none;
+	  cursor: pointer;
+	  height: calc(var(--item-width) / 2);
+
+	  svg {
+		opacity: 0;
+		transition: all 0.2s ease-in-out;
+	  }
+
+	  &.left-button {
+		position: absolute;
+		left: 0;
+		z-index: 1;
+		width: 85px;
+		background: linear-gradient(
+		  to left,
+		  rgba(113, 113, 113, 0) 0%,
+		  #121212 100%
+		);
+	  }
+
+	  &.right-button {
+		position: absolute;
+		right: 0;
+		z-index: 1;
+		width: 100px;
+		// make it a gradient so it is transparent on the left and opaque on the right
+		background: linear-gradient(
+		  to right,
+		  rgba(113, 113, 113, 0) 0%,
+		  #121212 100%
+		);
+	  }
+	}
+  }
+
+  .item-wrapper {
+	width: var(--item-width);
+	aspect-ratio: 18/9;
+	transition: all 0.5s ease-in-out;
+	position: relative;
+
+	&:hover {
+	  scale: 1.05;
+
+	  .item-content {
+		opacity: 1;
+	  }
+
+	  .item-image {
+		opacity: 0.2;
+	  }
+	}
+
+	.item-image {
+	  width: 100%;
+	  height: 100%;
+	  background-image: url("https://image.tmdb.org/t/p/w500/6KErczPBROQty7QoIsaa6wJYXZi.jpg");
+	  background-size: cover;
+	  background-position: center;
+	  transition: all 0.5s ease-in-out;
+	}
+
+	.item-content {
+	  position: absolute;
+	  opacity: 0;
+	  transition: opacity 0.5s ease-in-out;
+	  z-index: 1;
+	  top: 60%;
+	  padding: 10px;
+	}
+}

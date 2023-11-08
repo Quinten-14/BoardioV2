@@ -6,6 +6,7 @@
 
     let amountNotifications = 1;
     let showSearchBox = false;
+    let loggedIn = true;
 
     function toggleSearchBox() {
         showSearchBox = !showSearchBox;
@@ -13,8 +14,6 @@
 </script>
 
 <style>
-	nav {
-		box-shadow: inset 0px 20px 15px 0px rgba(0,0,0,0.75)	}
     .nav_links li a {
         transition: all 0.2s ease-in-out;
     }
@@ -53,7 +52,7 @@
 	}
 </style>
 
-<nav class="flex justify-between px-16 py-6 sticky top-0">
+<nav class="flex justify-between px-16 py-6 fixed w-full top-0 z-50">
     <div class="flex items-center gap-16">
         <div>
             <a href="/">
@@ -64,6 +63,7 @@
             <ul class="flex gap-6 nav_links">
                 <li><a class="hover:text-stone-400" href="/">Home</a></li>
                 <li><a class="hover:text-stone-400" href="/">Boardgames</a></li>
+                <li><a class="hover:text-stone-400" href="/">Video Games</a></li>
                 <li><a class="hover:text-stone-400" href="/">New & Popular</a></li>
                 <li><a class="hover:text-stone-400" href="/">My List</a></li>
             </ul>
@@ -80,6 +80,7 @@
             </div>
         {/if}
         </div>
+        {#if loggedIn}
         <div class="flex items-center">
             <div class="notification-count">
                 <Notifications size="30"/>
@@ -94,5 +95,15 @@
 			<Expand_more size="25"/>
 			</div>
 		</div>
+        {:else}
+        <div class="flex items-center gap-4">
+            <button class="bg-stone-600 hover:bg-stone-500 text-white font-bold py-2 px-4 rounded">
+                Sign in
+            </button>
+            <button class="bg-stone-600 hover:bg-stone-500 text-white font-bold py-2 px-4 rounded">
+                Sign up
+            </button>
+        </div>
+        {/if}
     </div>
 </nav>
